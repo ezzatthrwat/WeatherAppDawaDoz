@@ -113,4 +113,18 @@ public class CitiesMenu extends AppCompatActivity {
             return connected = false;
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        if (s != null){
+            Intent intent = new Intent(CitiesMenu.this,HomeActivity.class);
+            intent.putExtra("CityName" , s ); // default
+            startActivity(intent);
+            finish();
+        }else {
+            Toast.makeText(this, "you should select city", Toast.LENGTH_SHORT).show();
+        }
+    }
 }

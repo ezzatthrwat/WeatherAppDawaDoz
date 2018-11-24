@@ -16,7 +16,9 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.zizoj.retrofitfirstapp.Dialogs.DialogWeatherLoading;
 import com.example.zizoj.retrofitfirstapp.Network.ApiClient;
 import com.example.zizoj.retrofitfirstapp.Network.ApiService;
 import com.example.zizoj.retrofitfirstapp.Network.model.Current;
@@ -74,6 +76,8 @@ public class HomeActivity extends AppCompatActivity {
     String MY_PREFS_NAME_2 = "prefwidgetapp";
 
 
+    DialogWeatherLoading loading ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,8 +86,6 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
 
-//        SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME_2, MODE_PRIVATE);
-//        name = prefs.getString("citynamewhenoff" , "aswan");
 
             setupWidget();
             initImageLoader();
@@ -91,12 +93,18 @@ public class HomeActivity extends AppCompatActivity {
             getCurrentTime();
             getCityWeather();
             initRoomDatabase();
+            saveData();
 
+
+
+    }
+
+    private void saveData(){
         if (!internetConnection()){
 
             if (name != null){
 
-               weatherlist = weatherDatabase.daoAccess().fetchOneMoviesbyMovieId(name);
+                weatherlist = weatherDatabase.daoAccess().fetchOneMoviesbyMovieId(name);
 
                 if (weatherlist.size() > 0 ) {
 
@@ -124,14 +132,18 @@ public class HomeActivity extends AppCompatActivity {
                     editor.commit();
 
 
+                    loading.dismiss();
+
+
+                }else{
+                    Toast.makeText(this, "there is no data please chek connetion", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(HomeActivity.this , CitiesMenu.class));
+                    finish();
                 }
 
             }
 
         }
-
-
-
     }
 
     public void initRoomDatabase(){
@@ -185,6 +197,10 @@ public class HomeActivity extends AppCompatActivity {
         };
         ForecastRecyclerView.setLayoutManager(layoutManager);
 
+
+        loading = new DialogWeatherLoading();
+        loading.show(getFragmentManager(), getString(R.string.loading_weather_dialog));
+
     }
 
 
@@ -237,6 +253,7 @@ public class HomeActivity extends AppCompatActivity {
                 //setbackground
                 setLayoutBackground(ForcastingweathersList);
                 layout.setVisibility(View.VISIBLE);
+                loading.dismiss();
 
                 //insert in database
                 weatherDatabaseModel = new WeatherDatabaseModel(cityName ,temp ,tempDate,tempMin
@@ -284,11 +301,11 @@ public class HomeActivity extends AppCompatActivity {
 
         if (time.compareTo(Sunrise)>0 || time.compareTo(Moonrise) < 0){
 
-            layout.setBackground(ContextCompat.getDrawable(HomeActivity.this,R.drawable.nightwall3));
+            layout.setBackground(ContextCompat.getDrawable(HomeActivity.this,R.drawable.sunsetwall));
 
         }else if(time.compareTo(Moonrise)>0 || time.compareTo(Sunrise)<0){
 
-            layout.setBackground(ContextCompat.getDrawable(HomeActivity.this,R.drawable.sunsetwall));
+            layout.setBackground(ContextCompat.getDrawable(HomeActivity.this,R.drawable.nightwall3));
 
         }
     }
