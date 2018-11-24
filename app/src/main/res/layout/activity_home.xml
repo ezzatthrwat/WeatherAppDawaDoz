@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomeActivity"
+    android:id="@+id/MainLay"
+    >
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/RelativeWeather"
+
+            >
+
+            <!--Toolbar-->
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/rly1">
+
+                <include layout="@layout/home_toolbar"/>
+
+            </RelativeLayout>
+
+            <!--Center Layout-->
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/rly2"
+                android:layout_below="@id/rly1"
+                >
+
+                <include layout="@layout/home_center"/>
+
+            </RelativeLayout>
+
+            <!--Bottom Layout-->
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/forcastingRecycler"
+                android:layout_below="@id/rly2"
+                android:background="@drawable/trans_white_border_bottom"/>
+
+            
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/forcastingRecycler"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="10dp"
+                >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_sun"
+                   />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Contact Us"
+                    android:layout_gravity="center"
+                    android:textSize="15dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:layout_marginHorizontal="5dp"
+                    android:id="@+id/ContactUsTV"
+                    android:onClick="onContactUs"/>
+
+            </LinearLayout>
+            
+
+
+        </RelativeLayout>
+    </ScrollView>
+
+    
+    
+
+</android.support.design.widget.CoordinatorLayout>

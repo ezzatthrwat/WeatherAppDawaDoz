@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <!--Toolbar-->
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/rly1">
+
+            <include layout="@layout/citiesmenu_toolbar"/>
+
+        </RelativeLayout>
+
+        <!--Body-->
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rly1"
+            android:id="@+id/CitiesList"></ListView>
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

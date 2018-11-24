@@ -1,3 +1,12 @@
 <resources>
-    <string name="app_name">Retrofit First App</string>
+    <string name="app_name">WeatherApp</string>
+    <string name="string_cityname">cityname</string>
+    <string name="cities_menu_fragment">CitiesMenuFrag</string>
+    <string name="city_management">City Management</string>
+    <string name="tv_finish">Finish</string>
+    <string name="loading_weather_dialog">DialogWeatherLoading</string>
+    <string name="home_activity">homeactivity</string>
+    <string name="calling_activity">calling_activity</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
 </resources>
